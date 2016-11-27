@@ -1,68 +1,79 @@
-@extends('layouts.app')
+@extends('layouts.login')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
+<div class="center-vertical">
+    <div class="center-content">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+        <form class="col-md-3 center-margin" id="login-validation" method="POST" action="{{ url('/login') }}" data-parsley-validate="">
+            {{ csrf_field() }}
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+            <h3 class="text-center pad25B font-gray text-transform-upr font-size-23">Admin <span
+                        class="opacity-80">v1.0</span></h3>
+            <div id="login-form" class="content-box bg-default">
+                <div class="content-box-wrapper pad20A">
+                    @if ($errors->has('email'))
+                        <div class="alert alert-danger">
+                            <p>{{ $errors->first('email') }}</p>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <br/>
+                    @endif
+                    <div class="form-group">
+                        <div class="input-group">
+                        <span class="input-group-addon addon-inside bg-gray">
+                            <i class="glyph-icon icon-envelope-o"></i>
+                        </span>
+                            <input id="email" type="email" class="form-control" name="email" placeholder="Enter email" value="{{ old('email') }}" required autofocus>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                        <span class="input-group-addon addon-inside bg-gray">
+                            <i class="glyph-icon icon-unlock-alt"></i>
+                        </span>
+                            <input id="password" type="password" placeholder="Password" class="form-control" name="password" required>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-block btn-primary">Login</button>
+                    </div>
+                    <div class="row">
+                        <div class="checkbox-primary col-md-6" style="height: 20px;">
+                            <label>
+                                <input type="checkbox" id="loginCheckbox1" name="remember" class="custom-checkbox">
+                                Remember me
+                            </label>
                         </div>
-                    </form>
+                        <div class="text-right col-md-6">
+                            <a href="#" class="switch-button" switch-target="#login-forgot" switch-parent="#login-form"
+                               title="Recover password">Forgot your password?</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div id="login-forgot" class="content-box bg-default hide">
+                <div class="content-box-wrapper pad20A">
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Email address:</label>
+                        <div class="input-group">
+                        <span class="input-group-addon addon-inside bg-gray">
+                            <i class="glyph-icon icon-envelope-o"></i>
+                        </span>
+                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                        </div>
+                    </div>
+                </div>
+                <div class="button-pane text-center">
+                    <button type="submit" class="btn btn-md btn-primary">Recover Password</button>
+                    <a href="#" class="btn btn-md btn-link switch-button" switch-target="#login-form"
+                       switch-parent="#login-forgot" title="Cancel">Cancel</a>
+                </div>
+            </div>
+
+        </form>
+
     </div>
 </div>
+
 @endsection

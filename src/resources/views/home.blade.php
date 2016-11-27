@@ -1,17 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
 
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
+    <div id="page-nav" class="main-nav">
+
+        <div id="page-breadcrumb">
+            <a href="#" title="Dashboard">
+                <i class="glyph-icon icon-dashboard"></i>
+                Dashboard
+            </a>
+            <a href="#" title="Elements">
+                <i class="glyph-icon icon-laptop"></i>
+                Elements
+            </a>
+            <span class="current">Example breadcrumb</span>
         </div>
-    </div>
-</div>
+
+        <div id="page-nav-right">
+            <a href="#" title="" class="btn btn-blue-alt sb-open-right updateEasyPieChart">
+                <i class="glyph-icon icon-cogs"></i>
+                Statistics
+            </a>
+            <a href="#" title="" class="btn btn-success sb-open-left updateEasyPieChart">
+                <i class="glyph-icon icon-bullhorn"></i>
+                Chat
+            </a>
+        </div>
+
+    </div><!-- #page-nav -->
+
+
+    <div id="page-content">
+
+        <h1 class="font-gray-dark text-center mrg25T mrg15B">Home page</h1>
+
+    </div><!-- #page-content -->
+
 @endsection
